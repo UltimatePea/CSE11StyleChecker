@@ -1,0 +1,61 @@
+#!/software/common64/python/bin/python
+import os
+import sys
+import re
+if(len(sys.argv) == 1 ) :
+    print "Usage: python styleCheck.py filename"
+    sys.exit(1)
+        
+errcount = 0
+
+for filename in sys.argv[1:]:
+    print "Checking file : %s" % filename
+    with open(filename) as fhandle:
+        commentcount = 0
+        linecount = 0
+        expectedIndent = 0
+        inComment = False;
+        curIndent = 0
+        startParenCount = 0;
+        endParenCount = 0;
+        ignoreNextLine = False;
+
+        for line in fhandle:
+                linecount += 1
+                if "//" in line or "/*" in line:
+                        commentcount += 1
+                if (len(re.findall(r'[\+\-\*\/><=]\s*[2-9]',line)) > 0 or len(re.findall(r'[2-9]\s*[\+\-\*\/><=]',line)) > 0 )and len(re.findall(r'private static final', line))  == 0 and len(re.findall(r'\".*[2-9].*"',line)) == 0 and len(re.findall(r'\/\/.*[2-9]', line)) == 0 and len(re.findall(r'\/\*.*[2-9]', line)) == 0 and len(re.findall(r'^\s+\*.*[2-9]',line)) == 0:
+                        print "Line %d : Potentially magic numbers" % linecount
+                
+                        errcount += 1
+                if len(line) > 80:
+                        print "Line %d : Line character count exceeds 80. Character Count : %d" % ( linecount, len(line))
+                        errcount += 1
+
+#CHECKING INDENTATION put here because ingore Next Line, cannot jump ###TODO ####
+                if not line.strip():#empty line
+                    continue
+                #print "Checking %d" % linecount
+                curIndent = len(line) - len(line.lstrip())
+                expectedIndent -= len (re.findall('}', line)) 
+                if "/*" in line:
+                    inComment = True
+                if not curIndent == expectedIndent * 2 and not inComment and startParenCount == endParenCount and not ignoreNextLine:#and previous line did not (NOT END WITH ;)
+                    errcount += 1
+                    print "Line %d: Potentially Wrong Indentation Expected %d Actual %d" % (linecount, expectedIndent * 2, curIndent ) 
+                if "*/" in line:
+                    inComment = False
+                if not line.rstrip().endswith(';'):
+                    ignoreNextLine = True;
+                else:
+                    ignoreNextLine = False
+                expectedIndent += len(re.findall('{',line)) ;
+                startParenCount += line.count('(')
+                endParenCount += line.count(')')
+        if(errcount == 0) : 
+                print "%d lines checked, everything fine. Total %d double slash comments" % (linecount, commentcount)
+
+print "%d errors total" % errcount
+sys.exit(0 if errcount == 0 else 1)
+
+
