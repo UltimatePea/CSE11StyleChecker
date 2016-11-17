@@ -89,5 +89,6 @@ $ stylecheck *.java
 
 There is still a lot of space for improvement, e.g. file header checkings, method header checkings, e.t.c. Pull Requests are welcomed.
 
+###There are still plenty of issues. If you happen to find some bugs, please do not hesitate to open a discussion on the issues page.
 
 
