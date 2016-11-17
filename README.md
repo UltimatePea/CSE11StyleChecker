@@ -40,6 +40,10 @@ $ ~/CSE11StyleChecker-master/stylecheck *.java
 OR
 $ ~/CSE11StyleChecker/stylecheck *.java
 ```
+#### Note： on OS X， you need to set python interpreter by changing the first line of the code, or to prepend the command with "python"
+
+
+
 
 ## Install
 
