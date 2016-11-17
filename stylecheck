@@ -28,7 +28,7 @@ for filename in sys.argv[1:]:
                         print "Line %d : Potentially magic numbers" % linecount
                 
                         errcount += 1
-                if len(line) > 80:
+                if len(line.rstrip("\n\r")) > 80:
                         print "Line %d : Line character count exceeds 80. Character Count : %d" % ( linecount, len(line))
                         errcount += 1
 
