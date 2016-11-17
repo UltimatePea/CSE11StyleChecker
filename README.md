@@ -10,6 +10,8 @@ $ cd ~
 $ git clone https://github.com/UltimatePea/CSE11StyleChecker
 ```
 
+###Note: After cloning, the folder name will be either CSE11StyleChecker-master or just CSE11StyleChecker
+
 * Change file permission if necessary
 
 ```
