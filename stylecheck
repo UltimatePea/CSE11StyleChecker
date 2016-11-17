@@ -14,11 +14,12 @@ for filename in sys.argv[1:]:
         commentcount = 0
         linecount = 0
         expectedIndent = 0
-        inComment = False;
+        inComment = False
         curIndent = 0
-        startParenCount = 0;
-        endParenCount = 0;
-        ignoreNextLine = False;
+        startParenCount = 0
+        endParenCount = 0
+        ignoreNextLine = False
+        fileIsCorrect = True
 
         for line in fhandle:
                 linecount += 1
@@ -28,9 +29,11 @@ for filename in sys.argv[1:]:
                         print "Line %d : Potentially magic numbers" % linecount
                 
                         errcount += 1
+                        fileIsCorrect = False
                 if len(line.rstrip("\n\r")) > 80:
                         print "Line %d : Line character count exceeds 80. Character Count : %d" % ( linecount, len(line))
                         errcount += 1
+                        fileIsCorrect = False
 
 #CHECKING INDENTATION put here because ingore Next Line, cannot jump ###TODO ####
                 if not line.strip():#empty line
@@ -42,6 +45,7 @@ for filename in sys.argv[1:]:
                     inComment = True
                 if not curIndent == expectedIndent * 2 and not inComment and startParenCount == endParenCount and not ignoreNextLine:#and previous line did not (NOT END WITH ;)
                     errcount += 1
+                    fileIsCorrect = False
                     print "Line %d: Potentially Wrong Indentation Expected %d Actual %d" % (linecount, expectedIndent * 2, curIndent ) 
                 if "*/" in line:
                     inComment = False
@@ -52,7 +56,7 @@ for filename in sys.argv[1:]:
                 expectedIndent += len(re.findall('{',line)) ;
                 startParenCount += line.count('(')
                 endParenCount += line.count(')')
-        if(errcount == 0) : 
+        if(fileIsCorrect) : 
                 print "%d lines checked, everything fine. Total %d double slash comments" % (linecount, commentcount)
 
 print "%d errors total" % errcount
