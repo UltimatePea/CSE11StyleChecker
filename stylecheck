@@ -14,11 +14,11 @@ for filename in sys.argv[1:]:
         commentcount = 0
         linecount = 0
         expectedIndent = 0
-        inComment = False;
+        inComment = False
         curIndent = 0
-        startParenCount = 0;
-        endParenCount = 0;
-        ignoreNextLine = False;
+        startParenCount = 0
+        endParenCount = 0
+        ignoreNextLine = False
 
         for line in fhandle:
                 linecount += 1
