@@ -14,19 +14,29 @@ $ git clone https://github.com/UltimatePea/CSE11StyleChecker
 
 ```
 $ chmod u+x ~/CSE11StyleChecker-master/stylecheck
+OR
+$ chmod u+x ~/CSE11StyleChecker/stylecheck
 ```
+
+
+
+
 
 * Check any java file
 
 ```
 $ cd pa8;
 $ ~/CSE11StyleChecker-master/stylecheck Snake.java
+OR
+$ ~/CSE11StyleChecker/stylecheck Snake.java
 ```
 
 * Check all java file
 
 ```
 $ ~/CSE11StyleChecker-master/stylecheck *.java
+OR
+$ ~/CSE11StyleChecker/stylecheck *.java
 ```
 
 ## Install
@@ -37,6 +47,8 @@ $ ~/CSE11StyleChecker-master/stylecheck *.java
 
 ```
 $ cp ~/CSE11StyleChecker-master/stylecheck ~/bin/
+OR
+$ cp ~/CSE11StyleChecker/stylecheck ~/bin/
 ```
 
 * Add path to bashprofile
