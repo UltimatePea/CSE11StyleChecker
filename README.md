@@ -57,7 +57,7 @@ $ python ~/CSE11StyleChecker/stylecheck Snake.java
 $ python ~/CSE11StyleChecker-master/stylecheck *.java
 OR
 $ python ~/CSE11StyleChecker/stylecheck *.java
-
+```
 
 ## Install
 
