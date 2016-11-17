@@ -77,6 +77,14 @@ $ cp ~/CSE11StyleChecker/stylecheck ~/bin/
 $ echo "export PATH=$PATH:$HOME/bin" >> ~/.bash_profile
 ```
 
+* After installation, check any file by typing "stylecheck" directly
+
+```
+$ cd pa8;
+$ stylecheck *.java
+```
+
+
 ## Contribute
 
 There is still a lot of space for improvement, e.g. file header checkings, method header checkings, e.t.c. Pull Requests are welcomed.
