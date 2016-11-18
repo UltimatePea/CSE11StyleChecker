@@ -53,12 +53,7 @@ for filename in sys.argv[1:]:
                     ignoreNextLine = True;
                 else:
                     ignoreNextLine = False
-                expectedIndent += len(re.findall('{',line));
-                if line.rstrip().endswith(":"): # if line ends with :, consider a switch case
-                    expectedIndent += 1
-                if line.rstrip().endswith("break;"): # if line ends with break;, consider ending switch case
-                    expectedIndent -= 1
-
+                expectedIndent += len(re.findall('{',line)) ;
                 startParenCount += line.count('(')
                 endParenCount += line.count(')')
         if(fileIsCorrect) : 
