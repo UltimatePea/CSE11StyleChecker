@@ -86,7 +86,7 @@ $ stylecheck *.java
 
 #### To disable indentation, filter the output with `grep`
 
-`$stylecheck *.java | grep -v Indentation`
+`$ stylecheck *.java | grep -v Indentation`
 
 
 ## Contribute
